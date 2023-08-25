@@ -1,0 +1,86 @@
+import java.util.List;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        XDAO xDAO = new XDAO();
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("Menu:");
+            System.out.println("1. Listar");
+            System.out.println("2. Inserir");
+            System.out.println("3. Excluir");
+            System.out.println("4. Atualizar");
+            System.out.println("5. Sair");
+            System.out.print("Escolha uma opção: ");
+            
+            int opcao = scanner.nextInt();
+            scanner.nextLine(); // Limpar o buffer
+            
+            switch (opcao) {
+                case 1:
+                    listarRegistros(xDAO);
+                    break;
+                case 2:
+                    inserirRegistro(xDAO, scanner);
+                    break;
+                case 3:
+                    excluirRegistro(xDAO, scanner);
+                    break;
+                case 4:
+                    atualizarRegistro(xDAO, scanner);
+                    break;
+                case 5:
+                    System.out.println("Encerrando...");
+                    scanner.close();
+                    System.exit(0);
+                default:
+                    System.out.println("Opção inválida.");
+            }
+        }
+    }
+
+    private static void listarRegistros(XDAO xDAO) {
+        List<X> lista = xDAO.listarTodos();
+        for (X x : lista) {
+            System.out.println(x);
+        }
+    }
+
+    private static void inserirRegistro(XDAO xDAO, Scanner scanner) {
+        System.out.print("Nome: ");
+        String nome = scanner.nextLine();
+        System.out.print("Idade: ");
+        int idade = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer
+        System.out.print("Email: ");
+        String email = scanner.nextLine();
+        X x = new X(0, nome, idade, email);
+        xDAO.inserir(x);
+        System.out.println("Registro inserido com sucesso.");
+    }
+
+    private static void excluirRegistro(XDAO xDAO, Scanner scanner) {
+        System.out.print("ID do registro a ser excluído: ");
+        int id = scanner.nextInt();
+        xDAO.excluir(id);
+        System.out.println("Registro excluído com sucesso.");
+    }
+
+    private static void atualizarRegistro(XDAO xDAO, Scanner scanner) {
+        System.out.print("ID do registro a ser atualizado: ");
+        int id = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer
+        System.out.print("Novo nome: ");
+        String novoNome = scanner.nextLine();
+        System.out.print("Nova idade: ");
+        int novaIdade = scanner.nextInt();
+        scanner.nextLine(); // Limpar o buffer
+        System.out.print("Novo email: ");
+        String novoEmail = scanner.nextLine();
+        X x = new X(id, novoNome, novaIdade, novoEmail);
+        xDAO.atualizar(x);
+        System.out.println("Registro atualizado com sucesso.");
+    }
+}
