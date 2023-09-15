@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CRUD</title>
+</head>
+<body>
+  <h1>Inserir livro</h1>
+  <form action="http://localhost:8080/create" method="POST">
+    <input type="text" placeholder="Autor" name="autor"> <br />
+    <input type="text" placeholder="Nome" name="nome"> <br />
+    <input type="date" name="dataPublicacao"> <br />
+    <input type="text" placeholder="ISBN" name="isbn"> <br />
+    <input type="submit" value="Inserir">
+  </form>
+  <h1>Atualizar livro</h1>
+  <form action="http://localhost:8080/update" method="POST">
+    <input type="number" name="id"> <br />
+    <input type="text" placeholder="Autor" name="autor"> <br />
+    <input type="text" placeholder="Nome" name="nome"> <br />
+    <input type="date" name="dataPublicacao"> <br />
+    <input type="text" placeholder="ISBN" name="isbn"> <br />
+    <input type="submit" value="Update">
+  </form>
+  <h1>Remover livro</h1>
+  <form action="http://localhost:8080/delete" method="POST">
+    <input type="number" name="id"> <br />
+    <input type="submit" value="Deletar">
+  </form>
+</body>
+</html>
